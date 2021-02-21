@@ -27,6 +27,14 @@
 		786709DB25E2B3F800FCEEA1 /* IUserFeedServiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786709DA25E2B3F800FCEEA1 /* IUserFeedServiceConfigurator.swift */; };
 		786709DE25E2B4F600FCEEA1 /* UserFeedServiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786709DD25E2B4F600FCEEA1 /* UserFeedServiceConfigurator.swift */; };
 		786709E125E2B55C00FCEEA1 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786709E025E2B55C00FCEEA1 /* API.swift */; };
+		786709E625E2BACF00FCEEA1 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786709E525E2BACF00FCEEA1 /* UIView+Extensions.swift */; };
+		786709EB25E2BC0C00FCEEA1 /* UserFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786709EA25E2BC0C00FCEEA1 /* UserFeedCell.swift */; };
+		786709F025E2BC4500FCEEA1 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786709EF25E2BC4500FCEEA1 /* UICollectionView+Extensions.swift */; };
+		786709F625E2BCE400FCEEA1 /* IUserFeedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786709F525E2BCE400FCEEA1 /* IUserFeedCellViewModel.swift */; };
+		786709FB25E2BDB200FCEEA1 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786709FA25E2BDB200FCEEA1 /* Observable.swift */; };
+		786709FE25E2BDB900FCEEA1 /* Disposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786709FD25E2BDB900FCEEA1 /* Disposable.swift */; };
+		78670A0425E2BE9400FCEEA1 /* UserFeedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78670A0325E2BE9400FCEEA1 /* UserFeedCellViewModel.swift */; };
+		78670A0825E2C52800FCEEA1 /* Collection+safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78670A0725E2C52800FCEEA1 /* Collection+safe.swift */; };
 		78A1596725E28FC600908901 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A1596625E28FC600908901 /* AppDelegate.swift */; };
 		78A1597025E28FC800908901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78A1596F25E28FC800908901 /* Assets.xcassets */; };
 		78A1597325E28FC800908901 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78A1597125E28FC800908901 /* LaunchScreen.storyboard */; };
@@ -55,6 +63,14 @@
 		786709DA25E2B3F800FCEEA1 /* IUserFeedServiceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IUserFeedServiceConfigurator.swift; sourceTree = "<group>"; };
 		786709DD25E2B4F600FCEEA1 /* UserFeedServiceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFeedServiceConfigurator.swift; sourceTree = "<group>"; };
 		786709E025E2B55C00FCEEA1 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		786709E525E2BACF00FCEEA1 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		786709EA25E2BC0C00FCEEA1 /* UserFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFeedCell.swift; sourceTree = "<group>"; };
+		786709EF25E2BC4500FCEEA1 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
+		786709F525E2BCE400FCEEA1 /* IUserFeedCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IUserFeedCellViewModel.swift; sourceTree = "<group>"; };
+		786709FA25E2BDB200FCEEA1 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		786709FD25E2BDB900FCEEA1 /* Disposable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disposable.swift; sourceTree = "<group>"; };
+		78670A0325E2BE9400FCEEA1 /* UserFeedCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFeedCellViewModel.swift; sourceTree = "<group>"; };
+		78670A0725E2C52800FCEEA1 /* Collection+safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+safe.swift"; sourceTree = "<group>"; };
 		78A1596325E28FC600908901 /* GithubUsers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubUsers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A1596625E28FC600908901 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78A1596F25E28FC800908901 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,6 +94,7 @@
 		7867099025E2A5D800FCEEA1 /* UsersFeed */ = {
 			isa = PBXGroup;
 			children = (
+				786709E925E2BBEE00FCEEA1 /* Cell */,
 				7867099C25E2A75400FCEEA1 /* ViewModel */,
 				7867099525E2A60700FCEEA1 /* Router */,
 				7867099125E2A5E700FCEEA1 /* UsersFeedController.swift */,
@@ -185,6 +202,58 @@
 			path = RequestConfiguration;
 			sourceTree = "<group>";
 		};
+		786709E425E2BAC000FCEEA1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				786709E525E2BACF00FCEEA1 /* UIView+Extensions.swift */,
+				786709EF25E2BC4500FCEEA1 /* UICollectionView+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		786709E925E2BBEE00FCEEA1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				786709F425E2BCCF00FCEEA1 /* ViewModel */,
+				786709EA25E2BC0C00FCEEA1 /* UserFeedCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		786709F425E2BCCF00FCEEA1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				786709F525E2BCE400FCEEA1 /* IUserFeedCellViewModel.swift */,
+				78670A0325E2BE9400FCEEA1 /* UserFeedCellViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		786709F925E2BDA800FCEEA1 /* Observable */ = {
+			isa = PBXGroup;
+			children = (
+				786709FD25E2BDB900FCEEA1 /* Disposable.swift */,
+				786709FA25E2BDB200FCEEA1 /* Observable.swift */,
+			);
+			path = Observable;
+			sourceTree = "<group>";
+		};
+		78670A0025E2BE0000FCEEA1 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				786709F925E2BDA800FCEEA1 /* Observable */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		78670A0625E2C51C00FCEEA1 /* Extesions */ = {
+			isa = PBXGroup;
+			children = (
+				78670A0725E2C52800FCEEA1 /* Collection+safe.swift */,
+			);
+			path = Extesions;
+			sourceTree = "<group>";
+		};
 		78A1595A25E28FC600908901 = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +302,7 @@
 		78A1597F25E29CB500908901 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				786709E425E2BAC000FCEEA1 /* Extensions */,
 				7867099025E2A5D800FCEEA1 /* UsersFeed */,
 			);
 			path = Presentation;
@@ -241,6 +311,8 @@
 		78A1598025E29CBE00908901 /* Business Logic */ = {
 			isa = PBXGroup;
 			children = (
+				78670A0625E2C51C00FCEEA1 /* Extesions */,
+				78670A0025E2BE0000FCEEA1 /* Common */,
 				786709D025E2B20400FCEEA1 /* Configurators */,
 				78A1598325E2A26200908901 /* Managers */,
 				786709C325E2AE3E00FCEEA1 /* Services */,
@@ -353,12 +425,17 @@
 				786709CE25E2AF1100FCEEA1 /* BriefUser.swift in Sources */,
 				786709C125E2AE0600FCEEA1 /* UsersFeedViewModel.swift in Sources */,
 				7867099725E2A61800FCEEA1 /* IUsersFeedRouter.swift in Sources */,
+				786709F625E2BCE400FCEEA1 /* IUserFeedCellViewModel.swift in Sources */,
 				786709A825E2A8CF00FCEEA1 /* HTTPMethod.swift in Sources */,
 				786709CB25E2AE7600FCEEA1 /* IUsersFeedService.swift in Sources */,
+				78670A0425E2BE9400FCEEA1 /* UserFeedCellViewModel.swift in Sources */,
+				786709E625E2BACF00FCEEA1 /* UIView+Extensions.swift in Sources */,
 				786709D325E2B30900FCEEA1 /* UserFeedService.swift in Sources */,
 				78A1596725E28FC600908901 /* AppDelegate.swift in Sources */,
 				786709B225E2AAC200FCEEA1 /* IParametersEncoder.swift in Sources */,
 				786709DE25E2B4F600FCEEA1 /* UserFeedServiceConfigurator.swift in Sources */,
+				786709FE25E2BDB900FCEEA1 /* Disposable.swift in Sources */,
+				786709F025E2BC4500FCEEA1 /* UICollectionView+Extensions.swift in Sources */,
 				786709AE25E2AA2D00FCEEA1 /* NetworkResponseError.swift in Sources */,
 				786709E125E2B55C00FCEEA1 /* API.swift in Sources */,
 				7867099225E2A5E700FCEEA1 /* UsersFeedController.swift in Sources */,
@@ -366,8 +443,11 @@
 				786709BE25E2AD0300FCEEA1 /* IUsersFeedViewModel.swift in Sources */,
 				786709B925E2AB0600FCEEA1 /* URLParametersEncoder.swift in Sources */,
 				786709D625E2B36800FCEEA1 /* RequestConfiguration.swift in Sources */,
+				786709FB25E2BDB200FCEEA1 /* Observable.swift in Sources */,
 				786709B625E2AAD400FCEEA1 /* JSONParametersEncoder.swift in Sources */,
 				786709DB25E2B3F800FCEEA1 /* IUserFeedServiceConfigurator.swift in Sources */,
+				78670A0825E2C52800FCEEA1 /* Collection+safe.swift in Sources */,
+				786709EB25E2BC0C00FCEEA1 /* UserFeedCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

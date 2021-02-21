@@ -7,8 +7,19 @@
 
 import Foundation
 
+enum UsersFeedViewModelState {
+    case loading
+    case loaded
+    case loadedWithError(Error)
+}
+
 protocol IUsersFeedViewModel: AnyObject {
+    typealias State = UsersFeedViewModelState
+    
+    var state: Observable<State?> { get }
+    
     func load()
-    func viewModelForItemAt(_ indexPath: IndexPath)
+    func numberOfItems() -> Int
+    func viewModelForItemAt(_ indexPath: IndexPath) -> IUserFeedCellViewModel?
     func selectItemAt(_ indexPath: IndexPath)
 }
