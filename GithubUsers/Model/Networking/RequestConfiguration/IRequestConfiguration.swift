@@ -10,7 +10,6 @@ import Foundation
 public typealias HTTPHeaders = [String: String]
 public typealias Parameters = [String: Any]
 
-/// Container for `URLRequest` configuration properties
 protocol IRequestConfiguration {
     var baseURL: URL { get }
     var path: String { get }
@@ -19,7 +18,6 @@ protocol IRequestConfiguration {
     var urlParameters: Parameters? { get }
     var headers: HTTPHeaders? { get }
     var endpoint: URL { get }
-    /// Timeout interval in seconds
     var timeout: Double { get }
 }
 
