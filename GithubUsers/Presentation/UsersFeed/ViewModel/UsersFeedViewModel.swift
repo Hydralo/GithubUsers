@@ -12,12 +12,23 @@ final class UsersFeedViewModel: IUsersFeedViewModel {
     // MARK: - Properties
     
     let state: Observable<State?> = Observable(nil)
+    var isFiltering: Bool = false {
+        didSet {
+            guard !isFiltering else { return }
+            filteredCellViewModels = cellViewModels
+        }
+    }
     
     // MARK: - Private properties
 
     private let service: IUsersFeedService
     private let imageService: IImageService
-    private var cellModels: [IUserFeedCellViewModel] = []
+    private var cellViewModels: [IUserFeedCellViewModel] = []
+    private var filteredCellViewModels: [IUserFeedCellViewModel] = [] {
+        didSet {
+            state.value = .loaded
+        }
+    }
     private var pageCounter = 0
     
     // MARK: - Initialization
@@ -43,8 +54,8 @@ final class UsersFeedViewModel: IUsersFeedViewModel {
                         imageService: self.imageService
                     )
                 }
-                self.cellModels.append(contentsOf: cellModels)
-                self.state.value = .loaded
+                self.cellViewModels.append(contentsOf: cellModels)
+                self.filteredCellViewModels = self.cellViewModels
             } catch {
                 print(error)
                 self.state.value = .loadedWithError(error)
@@ -53,15 +64,26 @@ final class UsersFeedViewModel: IUsersFeedViewModel {
     }
     
     func numberOfItems() -> Int {
-        cellModels.count
+        filteredCellViewModels.count
     }
     
     func viewModelForItemAt(_ indexPath: IndexPath) -> IUserFeedCellViewModel? {
-        cellModels[safe: indexPath.item]
+        filteredCellViewModels[safe: indexPath.item]
     }
     
     func selectItemAt(_ indexPath: IndexPath) {
-        print("Open details for user: \(cellModels[safe: indexPath.item]?.name)")
+        print("Open details for user: \(filteredCellViewModels[safe: indexPath.item]?.name)")
+    }
+    
+    func filterUsersForText(_ searchText: String) {
+        defer { state.value = .loaded }
+        guard !searchText.isEmpty else {
+            filteredCellViewModels = cellViewModels
+            return
+        }
+        filteredCellViewModels = cellViewModels.filter {
+            $0.name.contains(searchText.uppercased())
+        }
     }
 
 }

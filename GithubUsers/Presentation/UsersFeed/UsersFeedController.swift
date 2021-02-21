@@ -11,13 +11,15 @@ final class UsersFeedController: UIViewController {
     
     private enum Constants {
         static let cellHeight: CGFloat = 120
+        static let searchBarPlaceholder = "User name"
     }
     
     // MARK: - Views
     
+    private let searchController = UISearchController()
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 1
+        layout.minimumLineSpacing = 0
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
     
@@ -41,8 +43,9 @@ final class UsersFeedController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureLayout()
+        configureAppearence()
         collectionConfigure()
+        configureSearchController()
         bindViewModel()
         viewModel.load()
     }
@@ -64,15 +67,25 @@ final class UsersFeedController: UIViewController {
     }
     
     private func collectionConfigure() {
-        collectionView.backgroundColor = .lightGray
+        collectionView.backgroundColor = .white
         collectionView.delegate = self
         collectionView.dataSource = self
         
         collectionView.registerCell(UserFeedCell.self)
     }
     
-    private func configureLayout() {
+    private func configureAppearence() {
+        navigationItem.title = "Users"
         view.addFrameEqualitySubview(collectionView)
+    }
+    
+    private func configureSearchController() {
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = Constants.searchBarPlaceholder
+        navigationItem.searchController = searchController
+        searchController.hidesNavigationBarDuringPresentation = false
+        definesPresentationContext = true
+        searchController.searchBar.delegate = self
     }
     
 }
@@ -107,3 +120,20 @@ extension UsersFeedController: UICollectionViewDataSource, UICollectionViewDeleg
     }
 
 }
+
+// MARK: - SearchController delegate functions implementation
+
+extension UsersFeedController: UISearchBarDelegate {
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let searchBarIsEmpty = searchBar.text?.isEmpty ?? true
+        viewModel.isFiltering = !searchBarIsEmpty && searchController.isActive
+        viewModel.filterUsersForText(searchText)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.isFiltering = false
+    }
+
+}
+

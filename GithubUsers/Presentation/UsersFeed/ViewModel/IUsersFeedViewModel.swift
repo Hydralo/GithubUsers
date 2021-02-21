@@ -17,9 +17,11 @@ protocol IUsersFeedViewModel: AnyObject {
     typealias State = UsersFeedViewModelState
     
     var state: Observable<State?> { get }
+    var isFiltering: Bool { get set }
     
     func load()
     func numberOfItems() -> Int
     func viewModelForItemAt(_ indexPath: IndexPath) -> IUserFeedCellViewModel?
     func selectItemAt(_ indexPath: IndexPath)
+    func filterUsersForText(_ searchText: String)
 }

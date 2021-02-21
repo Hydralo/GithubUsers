@@ -16,7 +16,8 @@ final class UsersFeedRouter: IUsersFeedRouter {
         let service = UserFeedService(networkClient: networkClient, configurator: UserFeedServiceConfigurator())
         let imageService = ImageService(networkClient: networkClient, configurator: ImageServiceConfigurator())
         let viewModel = UsersFeedViewModel(service: service, imageService: imageService)
-        return UsersFeedController(viewModel: viewModel)
+        let feedController = UsersFeedController(viewModel: viewModel)
+        return UINavigationController(rootViewController: feedController)
     }
 
 }
