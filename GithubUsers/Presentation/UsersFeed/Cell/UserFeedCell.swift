@@ -14,6 +14,7 @@ final class UserFeedCell: UICollectionViewCell {
         static let imageSideSize: CGFloat = 104
         static let imageViewInsets: UIEdgeInsets = .init(top: 8, left: 16, bottom: -8, right: .zero)
         static let nameLabelInsets: UIEdgeInsets = .init(top: .zero, left: 16, bottom: .zero, right: -16)
+        static let avatarPlaceholder = #imageLiteral(resourceName: "ic_avatar_placeholder")
     }
     
     // MARK: - Views
@@ -65,7 +66,7 @@ final class UserFeedCell: UICollectionViewCell {
     
     private func bindViewModel(_ viewModel: IUserFeedCellViewModel) {
         viewModel.avatarImage.observe { [weak self] image in
-            self?.imageView.image = image
+            self?.imageView.setImage(image ?? Constants.avatarPlaceholder)
         }.add(to: &disposal)
     }
     

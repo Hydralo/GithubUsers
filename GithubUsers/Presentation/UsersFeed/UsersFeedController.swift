@@ -12,6 +12,7 @@ final class UsersFeedController: UIViewController {
     private enum Constants {
         static let cellHeight: CGFloat = 120
         static let searchBarPlaceholder = "User name"
+        static let navigationTitle = "Users"
     }
     
     // MARK: - Views
@@ -22,6 +23,7 @@ final class UsersFeedController: UIViewController {
         layout.minimumLineSpacing = 0
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
+    private var loaderViewController: LoaderViewController?
     
     // MARK: - Private properties
     
@@ -57,11 +59,13 @@ final class UsersFeedController: UIViewController {
             guard let state = state else { return }
             switch state {
             case .loading:
-                print("Show loader")
+                self?.showLoader()
             case .loaded:
                 self?.collectionView.reloadData()
+                self?.hideLoader()
             case .loadedWithError(let error):
                 print(error)
+                self?.hideLoader()
             }
         }.add(to: &disposal)
     }
@@ -70,22 +74,33 @@ final class UsersFeedController: UIViewController {
         collectionView.backgroundColor = .white
         collectionView.delegate = self
         collectionView.dataSource = self
-        
+    
         collectionView.registerCell(UserFeedCell.self)
     }
     
     private func configureAppearence() {
-        navigationItem.title = "Users"
+        navigationItem.title = Constants.navigationTitle
         view.addFrameEqualitySubview(collectionView)
     }
     
     private func configureSearchController() {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = Constants.searchBarPlaceholder
-        navigationItem.searchController = searchController
         searchController.hidesNavigationBarDuringPresentation = false
-        definesPresentationContext = true
         searchController.searchBar.delegate = self
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+    
+    private func showLoader() {
+        let loaderController = LoaderViewController()
+        loaderViewController = loaderController
+        embed(loaderController, animated: false)
+    }
+
+    private func hideLoader() {
+        loaderViewController?.unembed()
+        loaderViewController = nil
     }
     
 }

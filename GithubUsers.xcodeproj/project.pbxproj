@@ -11,6 +11,14 @@
 		7843046825E2D0C9008F92E6 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7843046725E2D0C9008F92E6 /* ImageService.swift */; };
 		7856BD9125E2D22900301D4E /* IImageServiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856BD9025E2D22900301D4E /* IImageServiceConfigurator.swift */; };
 		7856BD9525E2D24E00301D4E /* ImageServiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856BD9425E2D24E00301D4E /* ImageServiceConfigurator.swift */; };
+		7856BD9925E31A6F00301D4E /* LoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856BD9825E31A6F00301D4E /* LoaderViewController.swift */; };
+		7856BD9D25E31A9400301D4E /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856BD9C25E31A9400301D4E /* ProgressView.swift */; };
+		7856BDA025E31AB200301D4E /* ProgressShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856BD9F25E31AB200301D4E /* ProgressShapeLayer.swift */; };
+		7856BDA725E31B6100301D4E /* RotationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856BDA625E31B6100301D4E /* RotationAnimation.swift */; };
+		7856BDAF25E31B7A00301D4E /* StrokeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856BDAE25E31B7A00301D4E /* StrokeAnimation.swift */; };
+		7856BDB225E31B9900301D4E /* StrokeColorAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856BDB125E31B9900301D4E /* StrokeColorAnimation.swift */; };
+		7856BDB525E31C1300301D4E /* UIViewController+children.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856BDB425E31C1300301D4E /* UIViewController+children.swift */; };
+		7856BDBA25E31E5F00301D4E /* UIImageView+animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856BDB925E31E5F00301D4E /* UIImageView+animation.swift */; };
 		7867099225E2A5E700FCEEA1 /* UsersFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867099125E2A5E700FCEEA1 /* UsersFeedController.swift */; };
 		7867099725E2A61800FCEEA1 /* IUsersFeedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867099625E2A61800FCEEA1 /* IUsersFeedRouter.swift */; };
 		7867099A25E2A65500FCEEA1 /* UsersFeedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867099925E2A65500FCEEA1 /* UsersFeedRouter.swift */; };
@@ -51,6 +59,14 @@
 		7843046725E2D0C9008F92E6 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		7856BD9025E2D22900301D4E /* IImageServiceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IImageServiceConfigurator.swift; sourceTree = "<group>"; };
 		7856BD9425E2D24E00301D4E /* ImageServiceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServiceConfigurator.swift; sourceTree = "<group>"; };
+		7856BD9825E31A6F00301D4E /* LoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderViewController.swift; sourceTree = "<group>"; };
+		7856BD9C25E31A9400301D4E /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		7856BD9F25E31AB200301D4E /* ProgressShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressShapeLayer.swift; sourceTree = "<group>"; };
+		7856BDA625E31B6100301D4E /* RotationAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationAnimation.swift; sourceTree = "<group>"; };
+		7856BDAE25E31B7A00301D4E /* StrokeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeAnimation.swift; sourceTree = "<group>"; };
+		7856BDB125E31B9900301D4E /* StrokeColorAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeColorAnimation.swift; sourceTree = "<group>"; };
+		7856BDB425E31C1300301D4E /* UIViewController+children.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+children.swift"; sourceTree = "<group>"; };
+		7856BDB925E31E5F00301D4E /* UIImageView+animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+animation.swift"; sourceTree = "<group>"; };
 		7867099125E2A5E700FCEEA1 /* UsersFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersFeedController.swift; sourceTree = "<group>"; };
 		7867099625E2A61800FCEEA1 /* IUsersFeedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IUsersFeedRouter.swift; sourceTree = "<group>"; };
 		7867099925E2A65500FCEEA1 /* UsersFeedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersFeedRouter.swift; sourceTree = "<group>"; };
@@ -115,6 +131,27 @@
 				7856BD9425E2D24E00301D4E /* ImageServiceConfigurator.swift */,
 			);
 			path = Image;
+			sourceTree = "<group>";
+		};
+		7856BDA225E31ABA00301D4E /* Loader */ = {
+			isa = PBXGroup;
+			children = (
+				7856BDA525E31B3D00301D4E /* ProgressView */,
+				7856BD9825E31A6F00301D4E /* LoaderViewController.swift */,
+			);
+			path = Loader;
+			sourceTree = "<group>";
+		};
+		7856BDA525E31B3D00301D4E /* ProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				7856BD9C25E31A9400301D4E /* ProgressView.swift */,
+				7856BD9F25E31AB200301D4E /* ProgressShapeLayer.swift */,
+				7856BDA625E31B6100301D4E /* RotationAnimation.swift */,
+				7856BDAE25E31B7A00301D4E /* StrokeAnimation.swift */,
+				7856BDB125E31B9900301D4E /* StrokeColorAnimation.swift */,
+			);
+			path = ProgressView;
 			sourceTree = "<group>";
 		};
 		7867099025E2A5D800FCEEA1 /* UsersFeed */ = {
@@ -234,7 +271,9 @@
 			isa = PBXGroup;
 			children = (
 				786709E525E2BACF00FCEEA1 /* UIView+Extensions.swift */,
+				7856BDB425E31C1300301D4E /* UIViewController+children.swift */,
 				786709EF25E2BC4500FCEEA1 /* UICollectionView+Extensions.swift */,
+				7856BDB925E31E5F00301D4E /* UIImageView+animation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -331,6 +370,7 @@
 			isa = PBXGroup;
 			children = (
 				786709E425E2BAC000FCEEA1 /* Extensions */,
+				7856BDA225E31ABA00301D4E /* Loader */,
 				7867099025E2A5D800FCEEA1 /* UsersFeed */,
 			);
 			path = Presentation;
@@ -445,14 +485,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7856BDA725E31B6100301D4E /* RotationAnimation.swift in Sources */,
 				786709A525E2A82E00FCEEA1 /* IRequestConfiguration.swift in Sources */,
 				786709AB25E2A9A600FCEEA1 /* NetworkClient.swift in Sources */,
+				7856BDB525E31C1300301D4E /* UIViewController+children.swift in Sources */,
 				786709A025E2A80100FCEEA1 /* INetworkClient.swift in Sources */,
 				78A1598B25E2A2BF00908901 /* LaunchAppManager.swift in Sources */,
 				7867099A25E2A65500FCEEA1 /* UsersFeedRouter.swift in Sources */,
 				786709CE25E2AF1100FCEEA1 /* BriefUser.swift in Sources */,
 				786709C125E2AE0600FCEEA1 /* UsersFeedViewModel.swift in Sources */,
 				7867099725E2A61800FCEEA1 /* IUsersFeedRouter.swift in Sources */,
+				7856BD9925E31A6F00301D4E /* LoaderViewController.swift in Sources */,
 				7856BD9125E2D22900301D4E /* IImageServiceConfigurator.swift in Sources */,
 				7843046825E2D0C9008F92E6 /* ImageService.swift in Sources */,
 				786709F625E2BCE400FCEEA1 /* IUserFeedCellViewModel.swift in Sources */,
@@ -461,13 +504,16 @@
 				7843046425E2D0B6008F92E6 /* IImageService.swift in Sources */,
 				78670A0425E2BE9400FCEEA1 /* UserFeedCellViewModel.swift in Sources */,
 				786709E625E2BACF00FCEEA1 /* UIView+Extensions.swift in Sources */,
+				7856BD9D25E31A9400301D4E /* ProgressView.swift in Sources */,
 				786709D325E2B30900FCEEA1 /* UserFeedService.swift in Sources */,
 				78A1596725E28FC600908901 /* AppDelegate.swift in Sources */,
 				786709B225E2AAC200FCEEA1 /* IParametersEncoder.swift in Sources */,
 				786709DE25E2B4F600FCEEA1 /* UserFeedServiceConfigurator.swift in Sources */,
 				786709FE25E2BDB900FCEEA1 /* Disposable.swift in Sources */,
+				7856BDAF25E31B7A00301D4E /* StrokeAnimation.swift in Sources */,
 				786709F025E2BC4500FCEEA1 /* UICollectionView+Extensions.swift in Sources */,
 				786709AE25E2AA2D00FCEEA1 /* NetworkResponseError.swift in Sources */,
+				7856BDBA25E31E5F00301D4E /* UIImageView+animation.swift in Sources */,
 				786709E125E2B55C00FCEEA1 /* API.swift in Sources */,
 				7867099225E2A5E700FCEEA1 /* UsersFeedController.swift in Sources */,
 				78A1598625E2A28800908901 /* ILaunchAppManager.swift in Sources */,
@@ -479,6 +525,8 @@
 				786709B625E2AAD400FCEEA1 /* JSONParametersEncoder.swift in Sources */,
 				786709DB25E2B3F800FCEEA1 /* IUserFeedServiceConfigurator.swift in Sources */,
 				78670A0825E2C52800FCEEA1 /* Collection+safe.swift in Sources */,
+				7856BDB225E31B9900301D4E /* StrokeColorAnimation.swift in Sources */,
+				7856BDA025E31AB200301D4E /* ProgressShapeLayer.swift in Sources */,
 				786709EB25E2BC0C00FCEEA1 /* UserFeedCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
