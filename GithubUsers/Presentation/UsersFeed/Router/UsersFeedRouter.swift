@@ -12,8 +12,10 @@ final class UsersFeedRouter: IUsersFeedRouter {
     // MARK: - Functions
 
     func getConfiguredRootViewController() -> UIViewController {
-        let service = UserFeedService(networkClient: NetworkClient(), configurator: UserFeedServiceConfigurator())
-        let viewModel = UsersFeedViewModel(service: service)
+        let networkClient = NetworkClient()
+        let service = UserFeedService(networkClient: networkClient, configurator: UserFeedServiceConfigurator())
+        let imageService = ImageService(networkClient: networkClient, configurator: ImageServiceConfigurator())
+        let viewModel = UsersFeedViewModel(service: service, imageService: imageService)
         return UsersFeedController(viewModel: viewModel)
     }
 

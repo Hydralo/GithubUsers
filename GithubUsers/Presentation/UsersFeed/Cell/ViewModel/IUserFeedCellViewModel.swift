@@ -10,4 +10,6 @@ import UIKit
 protocol IUserFeedCellViewModel: AnyObject {
     var avatarImage: Observable<UIImage?> { get }
     var name: String { get }
+    
+    func prepareForReuse()
 }

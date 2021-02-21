@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7843046425E2D0B6008F92E6 /* IImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7843046325E2D0B6008F92E6 /* IImageService.swift */; };
+		7843046825E2D0C9008F92E6 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7843046725E2D0C9008F92E6 /* ImageService.swift */; };
+		7856BD9125E2D22900301D4E /* IImageServiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856BD9025E2D22900301D4E /* IImageServiceConfigurator.swift */; };
+		7856BD9525E2D24E00301D4E /* ImageServiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856BD9425E2D24E00301D4E /* ImageServiceConfigurator.swift */; };
 		7867099225E2A5E700FCEEA1 /* UsersFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867099125E2A5E700FCEEA1 /* UsersFeedController.swift */; };
 		7867099725E2A61800FCEEA1 /* IUsersFeedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867099625E2A61800FCEEA1 /* IUsersFeedRouter.swift */; };
 		7867099A25E2A65500FCEEA1 /* UsersFeedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7867099925E2A65500FCEEA1 /* UsersFeedRouter.swift */; };
@@ -43,6 +47,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7843046325E2D0B6008F92E6 /* IImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IImageService.swift; sourceTree = "<group>"; };
+		7843046725E2D0C9008F92E6 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		7856BD9025E2D22900301D4E /* IImageServiceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IImageServiceConfigurator.swift; sourceTree = "<group>"; };
+		7856BD9425E2D24E00301D4E /* ImageServiceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServiceConfigurator.swift; sourceTree = "<group>"; };
 		7867099125E2A5E700FCEEA1 /* UsersFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersFeedController.swift; sourceTree = "<group>"; };
 		7867099625E2A61800FCEEA1 /* IUsersFeedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IUsersFeedRouter.swift; sourceTree = "<group>"; };
 		7867099925E2A65500FCEEA1 /* UsersFeedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersFeedRouter.swift; sourceTree = "<group>"; };
@@ -91,6 +99,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7843046225E2D0A6008F92E6 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				7843046325E2D0B6008F92E6 /* IImageService.swift */,
+				7843046725E2D0C9008F92E6 /* ImageService.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		7856BD8F25E2D20600301D4E /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				7856BD9025E2D22900301D4E /* IImageServiceConfigurator.swift */,
+				7856BD9425E2D24E00301D4E /* ImageServiceConfigurator.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		7867099025E2A5D800FCEEA1 /* UsersFeed */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +188,7 @@
 		786709C325E2AE3E00FCEEA1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				7843046225E2D0A6008F92E6 /* Image */,
 				786709C825E2AE6300FCEEA1 /* UsersFeed */,
 			);
 			path = Services;
@@ -179,6 +206,7 @@
 		786709D025E2B20400FCEEA1 /* Configurators */ = {
 			isa = PBXGroup;
 			children = (
+				7856BD8F25E2D20600301D4E /* Image */,
 				786709D125E2B20E00FCEEA1 /* UserFeed */,
 			);
 			path = Configurators;
@@ -425,9 +453,12 @@
 				786709CE25E2AF1100FCEEA1 /* BriefUser.swift in Sources */,
 				786709C125E2AE0600FCEEA1 /* UsersFeedViewModel.swift in Sources */,
 				7867099725E2A61800FCEEA1 /* IUsersFeedRouter.swift in Sources */,
+				7856BD9125E2D22900301D4E /* IImageServiceConfigurator.swift in Sources */,
+				7843046825E2D0C9008F92E6 /* ImageService.swift in Sources */,
 				786709F625E2BCE400FCEEA1 /* IUserFeedCellViewModel.swift in Sources */,
 				786709A825E2A8CF00FCEEA1 /* HTTPMethod.swift in Sources */,
 				786709CB25E2AE7600FCEEA1 /* IUsersFeedService.swift in Sources */,
+				7843046425E2D0B6008F92E6 /* IImageService.swift in Sources */,
 				78670A0425E2BE9400FCEEA1 /* UserFeedCellViewModel.swift in Sources */,
 				786709E625E2BACF00FCEEA1 /* UIView+Extensions.swift in Sources */,
 				786709D325E2B30900FCEEA1 /* UserFeedService.swift in Sources */,
@@ -444,6 +475,7 @@
 				786709B925E2AB0600FCEEA1 /* URLParametersEncoder.swift in Sources */,
 				786709D625E2B36800FCEEA1 /* RequestConfiguration.swift in Sources */,
 				786709FB25E2BDB200FCEEA1 /* Observable.swift in Sources */,
+				7856BD9525E2D24E00301D4E /* ImageServiceConfigurator.swift in Sources */,
 				786709B625E2AAD400FCEEA1 /* JSONParametersEncoder.swift in Sources */,
 				786709DB25E2B3F800FCEEA1 /* IUserFeedServiceConfigurator.swift in Sources */,
 				78670A0825E2C52800FCEEA1 /* Collection+safe.swift in Sources */,

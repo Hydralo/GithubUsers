@@ -16,13 +16,15 @@ final class UsersFeedViewModel: IUsersFeedViewModel {
     // MARK: - Private properties
 
     private let service: IUsersFeedService
+    private let imageService: IImageService
     private var cellModels: [IUserFeedCellViewModel] = []
     private var pageCounter = 0
     
     // MARK: - Initialization
     
-    init(service: IUsersFeedService) {
+    init(service: IUsersFeedService, imageService: IImageService) {
         self.service = service
+        self.imageService = imageService
     }
     
     // MARK: - Functions
@@ -30,15 +32,22 @@ final class UsersFeedViewModel: IUsersFeedViewModel {
     func load() {
         state.value = .loading
         service.requestUsers(pageIndex: pageCounter) { [weak self] result in
+            guard let self = self else { return }
             do {
                 let users = try result.get()
                 users.forEach { print($0) }
-                let cellModels = users.map { UserFeedCellViewModel(name: $0.name, avatarURL: $0.avatarURL) }
-                self?.cellModels.append(contentsOf: cellModels)
-                self?.state.value = .loaded
+                let cellModels = users.map {
+                    UserFeedCellViewModel(
+                        name: $0.name,
+                        avatarURL: $0.avatarURL,
+                        imageService: self.imageService
+                    )
+                }
+                self.cellModels.append(contentsOf: cellModels)
+                self.state.value = .loaded
             } catch {
                 print(error)
-                self?.state.value = .loadedWithError(error)
+                self.state.value = .loadedWithError(error)
             }
         }
     }

@@ -10,7 +10,7 @@ import UIKit
 final class UserFeedCell: UICollectionViewCell {
     
     private enum Constants {
-        static let imageCornerRadius: CGFloat = 8
+        static let imageCornerRadius: CGFloat = 6
         static let imageSideSize: CGFloat = 104
         static let imageViewInsets: UIEdgeInsets = .init(top: 8, left: 16, bottom: -8, right: .zero)
         static let nameLabelInsets: UIEdgeInsets = .init(top: .zero, left: 16, bottom: .zero, right: -16)
@@ -22,6 +22,7 @@ final class UserFeedCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = Constants.imageCornerRadius
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     private let nameLabel: UILabel = {
@@ -76,7 +77,7 @@ final class UserFeedCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.imageViewInsets.left),
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.imageViewInsets.top),
-            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.imageViewInsets.right),
+            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.imageViewInsets.bottom),
             imageView.widthAnchor.constraint(equalToConstant: Constants.imageSideSize),
             imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
             
