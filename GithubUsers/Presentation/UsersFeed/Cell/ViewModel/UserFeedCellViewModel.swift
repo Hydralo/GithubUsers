@@ -12,7 +12,7 @@ final class UserFeedCellViewModel: IUserFeedCellViewModel {
     // MARK: - Properties
     
     let id: Int
-    let name: String
+    let login: String
     let avatarImage: Observable<UIImage?> = Observable(nil)
     
     
@@ -26,7 +26,7 @@ final class UserFeedCellViewModel: IUserFeedCellViewModel {
     
     init(id: Int, name: String, avatarURL: URL, imageService: IImageService) {
         self.id = id
-        self.name = name.uppercased()
+        self.login = name.uppercased()
         self.imageService = imageService
         self.imageURL = avatarURL
         loadAvatarImage()

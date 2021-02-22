@@ -11,7 +11,7 @@ final class UsersFeedController: UIViewController {
     
     private enum Constants {
         static let cellHeight: CGFloat = 120
-        static let searchBarPlaceholder = "User name"
+        static let searchBarPlaceholder = "User login"
         static let navigationTitle = "Users"
     }
     
@@ -126,8 +126,8 @@ extension UsersFeedController: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let id = viewModel.viewModelForItemAt(indexPath)?.id else { return }
-        router.routeToUserDetails(id)
+        guard let userLogin = viewModel.viewModelForItemAt(indexPath)?.login else { return }
+        router.routeToUserDetails(userLogin)
     }
     
     func collectionView(

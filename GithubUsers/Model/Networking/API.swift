@@ -35,6 +35,7 @@ enum API {
     
     enum Path: String {
         case users = "users"
+        case userDetails = "users/"
     }
     
 }

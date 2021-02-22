@@ -35,6 +35,11 @@ final class UserFeedCell: UICollectionViewCell {
     // MARK: - Private properties
     
     private var disposal = Disposal()
+    private var viewModel: IUserFeedCellViewModel? {
+        willSet {
+            disposal.removeAll()
+        }
+    }
     
     // MARK: - Initialization
     
@@ -51,14 +56,16 @@ final class UserFeedCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        // TODO: - Cancel image loading request
+        viewModel?.prepareForReuse()
+        viewModel = nil
     }
     
     // MARK: - Functions
     
     func configure(with viewModel: IUserFeedCellViewModel) {
+        self.viewModel = viewModel
         contentView.backgroundColor = .white
-        nameLabel.text = viewModel.name
+        nameLabel.text = viewModel.login
         bindViewModel(viewModel)
     }
     

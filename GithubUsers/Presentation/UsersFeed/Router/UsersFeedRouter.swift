@@ -9,19 +9,29 @@ import UIKit
 
 final class UsersFeedRouter: IUsersFeedRouter {
     
+    private var navigationController: UINavigationController?
+    private lazy var networkClient: INetworkClient = NetworkClient()
+    private lazy var imageService: IImageService = ImageService(
+        networkClient: networkClient,
+        configurator: ImageServiceConfigurator()
+    )
+    
     // MARK: - Functions
 
     func getConfiguredRootViewController() -> UIViewController {
-        let networkClient = NetworkClient()
         let service = UserFeedService(networkClient: networkClient, configurator: UserFeedServiceConfigurator())
-        let imageService = ImageService(networkClient: networkClient, configurator: ImageServiceConfigurator())
         let viewModel = UsersFeedViewModel(service: service, imageService: imageService)
         let feedController = UsersFeedController(viewModel: viewModel, router: self)
-        return UINavigationController(rootViewController: feedController)
+        let navigationController = UINavigationController(rootViewController: feedController)
+        self.navigationController = navigationController
+        return navigationController
     }
     
-    func routeToUserDetails(_ userID: Int) {
-        print("Route to user with ID: \(userID)")
+    func routeToUserDetails(_ userName: String) {
+        let service = UserDetailsService(networkClient: networkClient, configurator: UserDetailsServiceConfigurator())
+        let viewModel = UserDetailsViewModel(userName: userName, service: service, imageService: imageService)
+        let detailsController = UserDetailsController(viewModel: viewModel)
+        navigationController?.pushViewController(detailsController, animated: true)
     }
     
 }

@@ -70,7 +70,7 @@ final class UsersFeedViewModel: IUsersFeedViewModel {
             return
         }
         filteredCellViewModels = cellViewModels.filter {
-            $0.name.contains(searchText.uppercased())
+            $0.login.contains(searchText.uppercased())
         }
     }
     
@@ -84,7 +84,7 @@ final class UsersFeedViewModel: IUsersFeedViewModel {
                 let cellModels = users.map {
                     UserFeedCellViewModel(
                         id: $0.id,
-                        name: $0.name,
+                        name: $0.login,
                         avatarURL: $0.avatarURL,
                         imageService: self.imageService
                     )
