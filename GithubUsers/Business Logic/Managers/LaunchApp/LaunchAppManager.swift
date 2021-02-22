@@ -9,14 +9,11 @@ import UIKit
 
 final class LaunchAppManager: ILaunchAppManager {
     
-    // MARK: - Private properties
-    
-    private let rootRouter: IUsersFeedRouter = UsersFeedRouter()
-    
     // MARK: - Functions
     
     func generateWindow() -> UIWindow {
         let window = UIWindow()
+        let rootRouter = UsersFeedRouter()
         window.rootViewController = rootRouter.getConfiguredRootViewController()
         window.makeKeyAndVisible()
         return window

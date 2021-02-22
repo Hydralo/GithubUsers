@@ -17,6 +17,7 @@ final class UsersFeedViewModel: IUsersFeedViewModel {
     
     // MARK: - Properties
     
+    let action: Observable<Action?> = Observable(nil)
     let state: Observable<State?> = Observable(nil)
     var isFiltering: Bool = false {
         didSet {
@@ -61,10 +62,6 @@ final class UsersFeedViewModel: IUsersFeedViewModel {
     func viewModelForItemAt(_ indexPath: IndexPath) -> IUserFeedCellViewModel? {
         prefetchIfNeeded(indexPath)
         return filteredCellViewModels[safe: indexPath.item]
-    }
-    
-    func selectItemAt(_ indexPath: IndexPath) {
-        print("Open details for user: \(filteredCellViewModels[safe: indexPath.item]?.name)")
     }
     
     func filterUsersForText(_ searchText: String) {

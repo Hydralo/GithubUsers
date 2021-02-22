@@ -16,8 +16,12 @@ final class UsersFeedRouter: IUsersFeedRouter {
         let service = UserFeedService(networkClient: networkClient, configurator: UserFeedServiceConfigurator())
         let imageService = ImageService(networkClient: networkClient, configurator: ImageServiceConfigurator())
         let viewModel = UsersFeedViewModel(service: service, imageService: imageService)
-        let feedController = UsersFeedController(viewModel: viewModel)
+        let feedController = UsersFeedController(viewModel: viewModel, router: self)
         return UINavigationController(rootViewController: feedController)
     }
-
+    
+    func routeToUserDetails(_ userID: Int) {
+        print("Route to user with ID: \(userID)")
+    }
+    
 }

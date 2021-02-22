@@ -9,4 +9,5 @@ import UIKit
 
 protocol IUsersFeedRouter: AnyObject {
     func getConfiguredRootViewController() -> UIViewController
+    func routeToUserDetails(_ userID: Int)
 }

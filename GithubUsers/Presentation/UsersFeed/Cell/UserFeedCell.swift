@@ -82,9 +82,9 @@ final class UserFeedCell: UICollectionViewCell {
             imageView.widthAnchor.constraint(equalToConstant: Constants.imageSideSize),
             imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
             
-            nameLabel.topAnchor.constraint(equalTo: imageView.topAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: Constants.nameLabelInsets.left),
-            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Constants.nameLabelInsets.right)
+            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Constants.nameLabelInsets.right),
+            nameLabel.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
         ])
     }
     

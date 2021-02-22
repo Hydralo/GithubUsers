@@ -28,12 +28,14 @@ final class UsersFeedController: UIViewController {
     // MARK: - Private properties
     
     private let viewModel: IUsersFeedViewModel
+    private let router: IUsersFeedRouter
     private var disposal = Disposal()
     
     // MARK: - Initialization
     
-    init(viewModel: IUsersFeedViewModel) {
+    init(viewModel: IUsersFeedViewModel, router: IUsersFeedRouter) {
         self.viewModel = viewModel
+        self.router = router
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -62,10 +64,10 @@ final class UsersFeedController: UIViewController {
                 self?.showLoader()
             case .loaded:
                 self?.collectionView.reloadData()
-                self?.hideLoader()
+                self?.hideLoaderIfNeeded()
             case .loadedWithError(let error):
                 print(error)
-                self?.hideLoader()
+                self?.hideLoaderIfNeeded()
             }
         }.add(to: &disposal)
     }
@@ -98,7 +100,8 @@ final class UsersFeedController: UIViewController {
         embed(loaderController, animated: false)
     }
 
-    private func hideLoader() {
+    private func hideLoaderIfNeeded() {
+        guard loaderViewController != nil else { return }
         loaderViewController?.unembed()
         loaderViewController = nil
     }
@@ -123,7 +126,8 @@ extension UsersFeedController: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.selectItemAt(indexPath)
+        guard let id = viewModel.viewModelForItemAt(indexPath)?.id else { return }
+        router.routeToUserDetails(id)
     }
     
     func collectionView(
