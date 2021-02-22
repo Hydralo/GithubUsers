@@ -5,9 +5,9 @@
 //  Created by Igor on 21.02.2021.
 //
 
-public typealias Disposal = [Disposable]
+typealias Disposal = [Disposable]
 
-public final class Disposable {
+final class Disposable {
 
     // MARK: - Private properties
 
@@ -15,7 +15,7 @@ public final class Disposable {
 
     // MARK: - Initialization
 
-    public init(_ dispose: @escaping () -> Void) {
+    init(_ dispose: @escaping () -> Void) {
         self.dispose = dispose
     }
 
@@ -25,9 +25,9 @@ public final class Disposable {
         dispose()
     }
 
-    // MARK: - Public functions
+    // MARK: - Functions
 
-    public func add(to disposal: inout Disposal) {
+    func add(to disposal: inout Disposal) {
         disposal.append(self)
     }
 

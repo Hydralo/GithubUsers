@@ -18,6 +18,7 @@
 		784BCE6D25E41545003F2749 /* UserDetailsServiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784BCE6C25E41545003F2749 /* UserDetailsServiceConfigurator.swift */; };
 		784BCE7325E4166D003F2749 /* UserDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784BCE7225E4166D003F2749 /* UserDetailsService.swift */; };
 		784BCE7725E430A1003F2749 /* SubtitledInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784BCE7625E430A1003F2749 /* SubtitledInfoView.swift */; };
+		784BCE7E25E43E9E003F2749 /* ErrorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784BCE7D25E43E9E003F2749 /* ErrorController.swift */; };
 		7856BD9125E2D22900301D4E /* IImageServiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856BD9025E2D22900301D4E /* IImageServiceConfigurator.swift */; };
 		7856BD9525E2D24E00301D4E /* ImageServiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856BD9425E2D24E00301D4E /* ImageServiceConfigurator.swift */; };
 		7856BD9925E31A6F00301D4E /* LoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856BD9825E31A6F00301D4E /* LoaderViewController.swift */; };
@@ -60,6 +61,7 @@
 		78A1597325E28FC800908901 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78A1597125E28FC800908901 /* LaunchScreen.storyboard */; };
 		78A1598625E2A28800908901 /* ILaunchAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A1598525E2A28800908901 /* ILaunchAppManager.swift */; };
 		78A1598B25E2A2BF00908901 /* LaunchAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A1598A25E2A2BF00908901 /* LaunchAppManager.swift */; };
+		78CB844A25E449EB00BECFB6 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CB844925E449EB00BECFB6 /* NetworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,7 @@
 		784BCE6C25E41545003F2749 /* UserDetailsServiceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsServiceConfigurator.swift; sourceTree = "<group>"; };
 		784BCE7225E4166D003F2749 /* UserDetailsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsService.swift; sourceTree = "<group>"; };
 		784BCE7625E430A1003F2749 /* SubtitledInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitledInfoView.swift; sourceTree = "<group>"; };
+		784BCE7D25E43E9E003F2749 /* ErrorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorController.swift; sourceTree = "<group>"; };
 		7856BD9025E2D22900301D4E /* IImageServiceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IImageServiceConfigurator.swift; sourceTree = "<group>"; };
 		7856BD9425E2D24E00301D4E /* ImageServiceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServiceConfigurator.swift; sourceTree = "<group>"; };
 		7856BD9825E31A6F00301D4E /* LoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +121,7 @@
 		78A1597425E28FC800908901 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78A1598525E2A28800908901 /* ILaunchAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILaunchAppManager.swift; sourceTree = "<group>"; };
 		78A1598A25E2A2BF00908901 /* LaunchAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAppManager.swift; sourceTree = "<group>"; };
+		78CB844925E449EB00BECFB6 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +179,14 @@
 				784BCE6C25E41545003F2749 /* UserDetailsServiceConfigurator.swift */,
 			);
 			path = UserDetails;
+			sourceTree = "<group>";
+		};
+		784BCE7C25E43E8F003F2749 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				784BCE7D25E43E9E003F2749 /* ErrorController.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		7856BD8F25E2D20600301D4E /* Image */ = {
@@ -261,6 +273,7 @@
 				786709E025E2B55C00FCEEA1 /* API.swift */,
 				786709A725E2A8CF00FCEEA1 /* HTTPMethod.swift */,
 				786709AD25E2AA2D00FCEEA1 /* NetworkResponseError.swift */,
+				78CB844925E449EB00BECFB6 /* NetworkError.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -423,6 +436,7 @@
 		78A1597F25E29CB500908901 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				784BCE7C25E43E8F003F2749 /* Error */,
 				784BCE5225E40FE7003F2749 /* UserDetails */,
 				786709E425E2BAC000FCEEA1 /* Extensions */,
 				7856BDA225E31ABA00301D4E /* Loader */,
@@ -575,6 +589,7 @@
 				7856BDAF25E31B7A00301D4E /* StrokeAnimation.swift in Sources */,
 				784BCE6D25E41545003F2749 /* UserDetailsServiceConfigurator.swift in Sources */,
 				786709F025E2BC4500FCEEA1 /* UICollectionView+Extensions.swift in Sources */,
+				784BCE7E25E43E9E003F2749 /* ErrorController.swift in Sources */,
 				784BCE7325E4166D003F2749 /* UserDetailsService.swift in Sources */,
 				786709AE25E2AA2D00FCEEA1 /* NetworkResponseError.swift in Sources */,
 				786709E125E2B55C00FCEEA1 /* API.swift in Sources */,
@@ -582,6 +597,7 @@
 				78A1598625E2A28800908901 /* ILaunchAppManager.swift in Sources */,
 				786709BE25E2AD0300FCEEA1 /* IUsersFeedViewModel.swift in Sources */,
 				784BCE5425E41001003F2749 /* UserDetailsController.swift in Sources */,
+				78CB844A25E449EB00BECFB6 /* NetworkError.swift in Sources */,
 				786709B925E2AB0600FCEEA1 /* URLParametersEncoder.swift in Sources */,
 				786709D625E2B36800FCEEA1 /* RequestConfiguration.swift in Sources */,
 				786709FB25E2BDB200FCEEA1 /* Observable.swift in Sources */,

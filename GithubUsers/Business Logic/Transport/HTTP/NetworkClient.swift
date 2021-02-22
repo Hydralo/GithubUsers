@@ -27,7 +27,7 @@ final class NetworkClient: INetworkClient {
         self.urlParametersEncoder = urlParametersEncoder
     }
 
-    // MARK: - Public functions
+    // MARK: - Functions
 
     func request(
         with configuration: IRequestConfiguration,

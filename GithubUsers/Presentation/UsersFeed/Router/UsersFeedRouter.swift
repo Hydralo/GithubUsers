@@ -8,7 +8,7 @@
 import UIKit
 
 final class UsersFeedRouter: IUsersFeedRouter {
-    
+
     private var navigationController: UINavigationController?
     private lazy var networkClient: INetworkClient = NetworkClient()
     private lazy var imageService: IImageService = ImageService(
@@ -32,6 +32,25 @@ final class UsersFeedRouter: IUsersFeedRouter {
         let viewModel = UserDetailsViewModel(userName: userName, service: service, imageService: imageService)
         let detailsController = UserDetailsController(viewModel: viewModel)
         navigationController?.pushViewController(detailsController, animated: true)
+    }
+    
+    func routeToError(
+        title: String,
+        subtitle: String,
+        buttonTitle: String,
+        mainAction: @escaping Completion,
+        closeAction: Completion?
+    ) {
+        let errorController = ErrorController(
+            title: title,
+            subtitle: subtitle,
+            buttonTitle: buttonTitle,
+            mainAction: mainAction,
+            closeAction: closeAction
+        )
+        errorController.modalPresentationStyle = .fullScreen
+        errorController.modalTransitionStyle = .crossDissolve
+        navigationController?.topViewController?.present(errorController, animated: true)
     }
     
 }

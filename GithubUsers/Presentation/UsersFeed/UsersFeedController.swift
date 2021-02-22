@@ -66,10 +66,23 @@ final class UsersFeedController: UIViewController {
                 self?.collectionView.reloadData()
                 self?.hideLoaderIfNeeded()
             case .loadedWithError(let error):
-                print(error)
                 self?.hideLoaderIfNeeded()
+                self?.handleError(error)
             }
         }.add(to: &disposal)
+    }
+    
+    private func handleError(_ error: Error) {
+        let retryAction: () -> Void = { [weak self] in
+            self?.viewModel.load()
+        }
+        router.routeToError(
+            title: "Error",
+            subtitle: error.localizedDescription,
+            buttonTitle: "Try again",
+            mainAction: retryAction,
+            closeAction: retryAction
+        )
     }
     
     private func collectionConfigure() {

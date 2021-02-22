@@ -9,7 +9,7 @@ import UIKit
 
 final class UserDetailsViewModel: IUserDetailsViewModel {
     
-    // MARK: - Public properties
+    // MARK: - Properties
     
     let userName: String
     let userInfo: Observable<(textInfo: UserTextInfo, quantitativeInfo: UserQuantitativeInfo)?> = Observable(nil)

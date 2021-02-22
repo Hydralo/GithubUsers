@@ -31,7 +31,7 @@ final class RequestConfiguration: IRequestConfiguration {
 
     // MARK: - Initialization
 
-    public init(baseURL: URL,
+    init(baseURL: URL,
                 path: String,
                 method: HTTPMethod,
                 bodyParameters: Parameters?,

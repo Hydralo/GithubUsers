@@ -93,7 +93,6 @@ final class UsersFeedViewModel: IUsersFeedViewModel {
                 self.filteredCellViewModels = self.cellViewModels
                 completion?()
             } catch {
-                print(error)
                 self.state.value = .loadedWithError(error)
             }
         }

@@ -13,7 +13,7 @@ final class ProgressView: UIView {
         static let defaultStrokeColor: UIColor = .gray
     }
 
-    // MARK: - Public properties
+    // MARK: - Properties
 
     var isAnimating: Bool = false {
         didSet {
@@ -63,7 +63,7 @@ final class ProgressView: UIView {
         shapeLayer.path = path.cgPath
     }
 
-    // MARK: - Public functions
+    // MARK: - Punctions
 
     func animateStroke() {
 
