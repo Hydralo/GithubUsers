@@ -8,5 +8,5 @@
 protocol IUsersFeedService: AnyObject {
     typealias Completion = (Result<[BriefUser], Error>) -> Void
     
-    func requestUsers(pageIndex: Int, completion: @escaping Completion)
+    func requestUsers(lastUserID: Int?, completion: @escaping Completion)
 }

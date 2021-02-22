@@ -8,6 +8,7 @@
 import UIKit
 
 protocol IUserFeedCellViewModel: AnyObject {
+    var id: Int { get }
     var avatarImage: Observable<UIImage?> { get }
     var name: String { get }
     

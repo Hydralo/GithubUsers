@@ -10,10 +10,12 @@ import Foundation
 struct BriefUser: Decodable {
     
     enum CodingKeys: String, CodingKey {
+        case id
         case name = "login"
         case avatarURL = "avatar_url"
     }
     
+    let id: Int
     let name: String
     let avatarURL: URL
 }

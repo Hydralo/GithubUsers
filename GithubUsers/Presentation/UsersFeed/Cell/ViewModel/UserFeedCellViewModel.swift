@@ -11,8 +11,10 @@ final class UserFeedCellViewModel: IUserFeedCellViewModel {
 
     // MARK: - Properties
     
-    let avatarImage: Observable<UIImage?> = Observable(nil)
+    let id: Int
     let name: String
+    let avatarImage: Observable<UIImage?> = Observable(nil)
+    
     
     // MARK: - Private properties
     
@@ -22,7 +24,8 @@ final class UserFeedCellViewModel: IUserFeedCellViewModel {
     
     // MARK: - Initialization
     
-    init(name: String, avatarURL: URL, imageService: IImageService) {
+    init(id: Int, name: String, avatarURL: URL, imageService: IImageService) {
+        self.id = id
         self.name = name.uppercased()
         self.imageService = imageService
         self.imageURL = avatarURL

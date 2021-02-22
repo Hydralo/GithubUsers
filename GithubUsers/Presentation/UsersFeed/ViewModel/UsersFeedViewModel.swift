@@ -9,6 +9,12 @@ import Foundation
 
 final class UsersFeedViewModel: IUsersFeedViewModel {
     
+    typealias Completion = () -> Void
+    
+    private enum Constants {
+        static let prefetchingLimit = 5
+    }
+    
     // MARK: - Properties
     
     let state: Observable<State?> = Observable(nil)
@@ -24,12 +30,15 @@ final class UsersFeedViewModel: IUsersFeedViewModel {
     private let service: IUsersFeedService
     private let imageService: IImageService
     private var cellViewModels: [IUserFeedCellViewModel] = []
+    private var prefetchInProgress: Bool = false
     private var filteredCellViewModels: [IUserFeedCellViewModel] = [] {
         didSet {
-            state.value = .loaded
+            self.state.value = .loaded
         }
     }
-    private var pageCounter = 0
+    private var lastUserID: Int? {
+        return cellViewModels.last?.id
+    }
     
     // MARK: - Initialization
     
@@ -42,25 +51,7 @@ final class UsersFeedViewModel: IUsersFeedViewModel {
 
     func load() {
         state.value = .loading
-        service.requestUsers(pageIndex: pageCounter) { [weak self] result in
-            guard let self = self else { return }
-            do {
-                let users = try result.get()
-                users.forEach { print($0) }
-                let cellModels = users.map {
-                    UserFeedCellViewModel(
-                        name: $0.name,
-                        avatarURL: $0.avatarURL,
-                        imageService: self.imageService
-                    )
-                }
-                self.cellViewModels.append(contentsOf: cellModels)
-                self.filteredCellViewModels = self.cellViewModels
-            } catch {
-                print(error)
-                self.state.value = .loadedWithError(error)
-            }
-        }
+        requestUsersForCurrentPage()
     }
     
     func numberOfItems() -> Int {
@@ -68,7 +59,8 @@ final class UsersFeedViewModel: IUsersFeedViewModel {
     }
     
     func viewModelForItemAt(_ indexPath: IndexPath) -> IUserFeedCellViewModel? {
-        filteredCellViewModels[safe: indexPath.item]
+        prefetchIfNeeded(indexPath)
+        return filteredCellViewModels[safe: indexPath.item]
     }
     
     func selectItemAt(_ indexPath: IndexPath) {
@@ -76,13 +68,48 @@ final class UsersFeedViewModel: IUsersFeedViewModel {
     }
     
     func filterUsersForText(_ searchText: String) {
-        defer { state.value = .loaded }
         guard !searchText.isEmpty else {
             filteredCellViewModels = cellViewModels
             return
         }
         filteredCellViewModels = cellViewModels.filter {
             $0.name.contains(searchText.uppercased())
+        }
+    }
+    
+    // MARK: - Private functions
+    
+    private func requestUsersForCurrentPage(completion: Completion? = nil) {
+        service.requestUsers(lastUserID: lastUserID) { [weak self] result in
+            guard let self = self else { return }
+            do {
+                let users = try result.get()
+                let cellModels = users.map {
+                    UserFeedCellViewModel(
+                        id: $0.id,
+                        name: $0.name,
+                        avatarURL: $0.avatarURL,
+                        imageService: self.imageService
+                    )
+                }
+                self.cellViewModels.append(contentsOf: cellModels)
+                self.filteredCellViewModels = self.cellViewModels
+                completion?()
+            } catch {
+                print(error)
+                self.state.value = .loadedWithError(error)
+            }
+        }
+    }
+    
+    private func prefetchIfNeeded(_ indexPath: IndexPath) {
+        guard
+            !prefetchInProgress,
+            !isFiltering && ( filteredCellViewModels.count - indexPath.row ) < Constants.prefetchingLimit
+        else { return }
+        prefetchInProgress = true
+        requestUsersForCurrentPage() { [weak self] in
+            self?.prefetchInProgress = false
         }
     }
 

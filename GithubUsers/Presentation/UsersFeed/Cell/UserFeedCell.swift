@@ -66,7 +66,7 @@ final class UserFeedCell: UICollectionViewCell {
     
     private func bindViewModel(_ viewModel: IUserFeedCellViewModel) {
         viewModel.avatarImage.observe { [weak self] image in
-            self?.imageView.setImage(image ?? Constants.avatarPlaceholder)
+            self?.imageView.image = image ?? Constants.avatarPlaceholder
         }.add(to: &disposal)
     }
     
