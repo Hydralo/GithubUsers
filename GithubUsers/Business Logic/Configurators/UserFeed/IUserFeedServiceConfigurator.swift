@@ -6,5 +6,5 @@
 //
 
 protocol IUserFeedServiceConfigurator: AnyObject {
-    func userFeedRequestConfiguration(pageIndex: Int) -> IRequestConfiguration
+    func userFeedRequestConfiguration(lastUserID: Int?) -> IRequestConfiguration
 }

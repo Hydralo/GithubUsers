@@ -25,6 +25,7 @@ enum API {
     enum Header {
         enum Key: String {
             case accept = "Accept"
+            case lastUserID = "since"
         }
 
         enum Value: String {
@@ -34,6 +35,7 @@ enum API {
     
     enum Path: String {
         case users = "users"
+        case userDetails = "users/"
     }
     
 }

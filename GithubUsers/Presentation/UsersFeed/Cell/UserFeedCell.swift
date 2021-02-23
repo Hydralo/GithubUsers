@@ -14,6 +14,7 @@ final class UserFeedCell: UICollectionViewCell {
         static let imageSideSize: CGFloat = 104
         static let imageViewInsets: UIEdgeInsets = .init(top: 8, left: 16, bottom: -8, right: .zero)
         static let nameLabelInsets: UIEdgeInsets = .init(top: .zero, left: 16, bottom: .zero, right: -16)
+        static let avatarPlaceholder = #imageLiteral(resourceName: "ic_avatar_placeholder")
     }
     
     // MARK: - Views
@@ -34,6 +35,11 @@ final class UserFeedCell: UICollectionViewCell {
     // MARK: - Private properties
     
     private var disposal = Disposal()
+    private var viewModel: IUserFeedCellViewModel? {
+        willSet {
+            disposal.removeAll()
+        }
+    }
     
     // MARK: - Initialization
     
@@ -50,14 +56,16 @@ final class UserFeedCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        // TODO: - Cancel image loading request
+        viewModel?.prepareForReuse()
+        viewModel = nil
     }
     
     // MARK: - Functions
     
     func configure(with viewModel: IUserFeedCellViewModel) {
+        self.viewModel = viewModel
         contentView.backgroundColor = .white
-        nameLabel.text = viewModel.name
+        nameLabel.text = viewModel.login
         bindViewModel(viewModel)
     }
     
@@ -65,7 +73,7 @@ final class UserFeedCell: UICollectionViewCell {
     
     private func bindViewModel(_ viewModel: IUserFeedCellViewModel) {
         viewModel.avatarImage.observe { [weak self] image in
-            self?.imageView.image = image
+            self?.imageView.image = image ?? Constants.avatarPlaceholder
         }.add(to: &disposal)
     }
     
@@ -81,9 +89,9 @@ final class UserFeedCell: UICollectionViewCell {
             imageView.widthAnchor.constraint(equalToConstant: Constants.imageSideSize),
             imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
             
-            nameLabel.topAnchor.constraint(equalTo: imageView.topAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: Constants.nameLabelInsets.left),
-            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Constants.nameLabelInsets.right)
+            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Constants.nameLabelInsets.right),
+            nameLabel.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
         ])
     }
     

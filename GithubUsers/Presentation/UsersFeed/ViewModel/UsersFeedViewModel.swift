@@ -9,16 +9,37 @@ import Foundation
 
 final class UsersFeedViewModel: IUsersFeedViewModel {
     
+    typealias Completion = () -> Void
+    
+    private enum Constants {
+        static let prefetchingLimit = 5
+    }
+    
     // MARK: - Properties
     
+    let action: Observable<Action?> = Observable(nil)
     let state: Observable<State?> = Observable(nil)
+    var isFiltering: Bool = false {
+        didSet {
+            guard !isFiltering else { return }
+            filteredCellViewModels = cellViewModels
+        }
+    }
     
     // MARK: - Private properties
 
     private let service: IUsersFeedService
     private let imageService: IImageService
-    private var cellModels: [IUserFeedCellViewModel] = []
-    private var pageCounter = 0
+    private var cellViewModels: [IUserFeedCellViewModel] = []
+    private var prefetchInProgress: Bool = false
+    private var filteredCellViewModels: [IUserFeedCellViewModel] = [] {
+        didSet {
+            self.state.value = .loaded(count: filteredCellViewModels.count)
+        }
+    }
+    private var lastUserID: Int? {
+        return cellViewModels.last?.id
+    }
     
     // MARK: - Initialization
     
@@ -31,37 +52,61 @@ final class UsersFeedViewModel: IUsersFeedViewModel {
 
     func load() {
         state.value = .loading
-        service.requestUsers(pageIndex: pageCounter) { [weak self] result in
+        requestUsersForCurrentPage()
+    }
+    
+    func numberOfItems() -> Int {
+        filteredCellViewModels.count
+    }
+    
+    func viewModelForItemAt(_ indexPath: IndexPath) -> IUserFeedCellViewModel? {
+        prefetchIfNeeded(indexPath)
+        return filteredCellViewModels[safe: indexPath.item]
+    }
+    
+    func filterUsersForText(_ searchText: String) {
+        guard !searchText.isEmpty else {
+            filteredCellViewModels = cellViewModels
+            return
+        }
+        filteredCellViewModels = cellViewModels.filter {
+            $0.login.contains(searchText.uppercased())
+        }
+    }
+    
+    // MARK: - Private functions
+    
+    private func requestUsersForCurrentPage(completion: Completion? = nil) {
+        service.requestUsers(lastUserID: lastUserID) { [weak self] result in
             guard let self = self else { return }
             do {
                 let users = try result.get()
-                users.forEach { print($0) }
                 let cellModels = users.map {
                     UserFeedCellViewModel(
-                        name: $0.name,
+                        id: $0.id,
+                        name: $0.login,
                         avatarURL: $0.avatarURL,
                         imageService: self.imageService
                     )
                 }
-                self.cellModels.append(contentsOf: cellModels)
-                self.state.value = .loaded
+                self.cellViewModels.append(contentsOf: cellModels)
+                self.filteredCellViewModels = self.cellViewModels
+                completion?()
             } catch {
-                print(error)
                 self.state.value = .loadedWithError(error)
             }
         }
     }
     
-    func numberOfItems() -> Int {
-        cellModels.count
-    }
-    
-    func viewModelForItemAt(_ indexPath: IndexPath) -> IUserFeedCellViewModel? {
-        cellModels[safe: indexPath.item]
-    }
-    
-    func selectItemAt(_ indexPath: IndexPath) {
-        print("Open details for user: \(cellModels[safe: indexPath.item]?.name)")
+    private func prefetchIfNeeded(_ indexPath: IndexPath) {
+        guard
+            !prefetchInProgress,
+            !isFiltering && ( filteredCellViewModels.count - indexPath.row ) < Constants.prefetchingLimit
+        else { return }
+        prefetchInProgress = true
+        requestUsersForCurrentPage() { [weak self] in
+            self?.prefetchInProgress = false
+        }
     }
 
 }

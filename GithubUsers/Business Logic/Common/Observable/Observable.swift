@@ -5,13 +5,13 @@
 //  Created by Igor on 21.02.2021.
 //
 
-public final class Observable<T> {
+final class Observable<T> {
 
-    public typealias Observer = (T) -> Void
+    typealias Observer = (T) -> Void
 
-    // MARK: - Public properties
+    // MARK: - properties
 
-    public var value: T {
+    var value: T {
         didSet {
             observers.values.forEach { $0(value) }
         }
@@ -24,11 +24,11 @@ public final class Observable<T> {
 
     // MARK: - Initialization
 
-    public init(_ value: T) {
+    init(_ value: T) {
         self.value = value
     }
 
-    // MARK: - Public functions
+    // MARK: - functions
 
     /**
      Subsribe to value changing.
@@ -36,7 +36,7 @@ public final class Observable<T> {
      - Returns: Block that removes created observer. Should be placed into Disposal.
      Disposal should be flushed after observer deinit.
      */
-    public func observe(_ observer: @escaping Observer) -> Disposable {
+    func observe(_ observer: @escaping Observer) -> Disposable {
         guard let id = uniqueID.next() else { fatalError("There should always be a next unique id") }
 
         observers[id] = observer
@@ -50,7 +50,7 @@ public final class Observable<T> {
     }
 
     /// Remove all observers for Observable entity.
-    public func removeAllObservers() {
+    func removeAllObservers() {
         observers.removeAll()
     }
 
@@ -58,7 +58,7 @@ public final class Observable<T> {
 
 // MARK: - Observable extension
 
-public extension Observable where T: Equatable {
+extension Observable where T: Equatable {
 
     static func == (lhs: Observable, rhs: Observable) -> Bool {
         return lhs.value == rhs.value

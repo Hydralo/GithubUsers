@@ -7,8 +7,8 @@
 
 import Foundation
 
-public typealias HTTPHeaders = [String: String]
-public typealias Parameters = [String: Any]
+typealias HTTPHeaders = [String: String]
+typealias Parameters = [String: Any]
 
 protocol IRequestConfiguration {
     var baseURL: URL { get }

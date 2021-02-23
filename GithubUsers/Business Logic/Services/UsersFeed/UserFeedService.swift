@@ -5,6 +5,8 @@
 //  Created by Igor on 21.02.2021.
 //
 
+import Foundation
+
 final class UserFeedService: IUsersFeedService {
 
     // MARK: - Private properties
@@ -21,8 +23,8 @@ final class UserFeedService: IUsersFeedService {
     
     // MARK: - Functions
 
-    func requestUsers(pageIndex: Int, completion: @escaping Completion) {
-        let requestConfiguration = configurator.userFeedRequestConfiguration(pageIndex: pageIndex)
+    func requestUsers(lastUserID: Int?, completion: @escaping Completion) {
+        let requestConfiguration = configurator.userFeedRequestConfiguration(lastUserID: lastUserID)
         networkClient.request(with: requestConfiguration, completionQueue: .main, completion: completion)
     }
     
