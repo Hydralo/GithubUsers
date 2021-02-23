@@ -14,7 +14,7 @@ enum UsersFeedViewModelAction {
 
 enum UsersFeedViewModelState {
     case loading
-    case loaded
+    case loaded(count: Int)
     case loadedWithError(Error)
 }
 

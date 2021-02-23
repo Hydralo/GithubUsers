@@ -62,6 +62,7 @@
 		78A1598625E2A28800908901 /* ILaunchAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A1598525E2A28800908901 /* ILaunchAppManager.swift */; };
 		78A1598B25E2A2BF00908901 /* LaunchAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A1598A25E2A2BF00908901 /* LaunchAppManager.swift */; };
 		78CB844A25E449EB00BECFB6 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CB844925E449EB00BECFB6 /* NetworkError.swift */; };
+		78D06A5925E550CE0003D4F4 /* StubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D06A5825E550CE0003D4F4 /* StubView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +123,7 @@
 		78A1598525E2A28800908901 /* ILaunchAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILaunchAppManager.swift; sourceTree = "<group>"; };
 		78A1598A25E2A2BF00908901 /* LaunchAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAppManager.swift; sourceTree = "<group>"; };
 		78CB844925E449EB00BECFB6 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		78D06A5825E550CE0003D4F4 /* StubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,7 @@
 				7867099C25E2A75400FCEEA1 /* ViewModel */,
 				7867099525E2A60700FCEEA1 /* Router */,
 				7867099125E2A5E700FCEEA1 /* UsersFeedController.swift */,
+				78D06A5825E550CE0003D4F4 /* StubView.swift */,
 			);
 			path = UsersFeed;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				786709B625E2AAD400FCEEA1 /* JSONParametersEncoder.swift in Sources */,
 				786709DB25E2B3F800FCEEA1 /* IUserFeedServiceConfigurator.swift in Sources */,
 				78670A0825E2C52800FCEEA1 /* Collection+safe.swift in Sources */,
+				78D06A5925E550CE0003D4F4 /* StubView.swift in Sources */,
 				7856BDB225E31B9900301D4E /* StrokeColorAnimation.swift in Sources */,
 				7856BDA025E31AB200301D4E /* ProgressShapeLayer.swift in Sources */,
 				786709EB25E2BC0C00FCEEA1 /* UserFeedCell.swift in Sources */,

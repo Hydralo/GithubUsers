@@ -24,6 +24,7 @@ final class UsersFeedController: UIViewController {
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
     private var loaderViewController: LoaderViewController?
+    private var stubView: StubView?
     
     // MARK: - Private properties
     
@@ -62,9 +63,14 @@ final class UsersFeedController: UIViewController {
             switch state {
             case .loading:
                 self?.showLoader()
-            case .loaded:
+            case .loaded(let itemsCount):
+                defer { self?.hideLoaderIfNeeded() }
+                guard  itemsCount > 0 else {
+                    self?.performStubbing()
+                    return
+                }
+                self?.removeStubbingIfNeeded()
                 self?.collectionView.reloadData()
-                self?.hideLoaderIfNeeded()
             case .loadedWithError(let error):
                 self?.hideLoaderIfNeeded()
                 self?.handleError(error)
@@ -117,6 +123,27 @@ final class UsersFeedController: UIViewController {
         guard loaderViewController != nil else { return }
         loaderViewController?.unembed()
         loaderViewController = nil
+    }
+    
+    private func performStubbing() {
+        removeStubbingIfNeeded()
+        let stubView = StubView() { [weak self] in
+            self?.viewModel.load()
+        }
+
+        stubView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.addSubview(stubView)
+        NSLayoutConstraint.activate([
+            stubView.centerXAnchor.constraint(equalTo: collectionView.safeAreaLayoutGuide.centerXAnchor),
+            stubView.centerYAnchor.constraint(equalTo: collectionView.safeAreaLayoutGuide.centerYAnchor)
+        ])
+        self.stubView = stubView
+    }
+    
+    private func removeStubbingIfNeeded() {
+        guard let stubView = stubView else { return }
+        stubView.removeFromSuperview()
+        self.stubView = nil
     }
     
 }

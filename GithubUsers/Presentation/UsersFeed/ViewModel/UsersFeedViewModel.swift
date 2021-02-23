@@ -34,7 +34,7 @@ final class UsersFeedViewModel: IUsersFeedViewModel {
     private var prefetchInProgress: Bool = false
     private var filteredCellViewModels: [IUserFeedCellViewModel] = [] {
         didSet {
-            self.state.value = .loaded
+            self.state.value = .loaded(count: filteredCellViewModels.count)
         }
     }
     private var lastUserID: Int? {
