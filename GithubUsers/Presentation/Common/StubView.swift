@@ -51,12 +51,7 @@ final class StubView: UIView {
     
     // MARK: - Private properties
     
-    private var completion: Completion? {
-        didSet {
-            guard completion != nil else { return }
-            configureButtonLayout()
-        }
-    }
+    private var completion: Completion?
     
     // MARK: - Initialization
     
@@ -64,6 +59,8 @@ final class StubView: UIView {
         self.completion = completion
         super.init(frame: .zero)
         configureLayout()
+        guard completion != nil else { return }
+        configureButtonLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -93,7 +90,7 @@ final class StubView: UIView {
             label.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor),
             label.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor),
             label.centerXAnchor.constraint(equalTo: centerXAnchor),
-            label.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor)
+            label.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor)
         ])
     }
     
@@ -106,7 +103,7 @@ final class StubView: UIView {
             retryButton.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor),
             retryButton.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor),
             retryButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            retryButton.bottomAnchor.constraint(equalTo: bottomAnchor),
+            retryButton.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor),
             retryButton.widthAnchor.constraint(equalToConstant: Constants.buttonWidth)
         ])
     }

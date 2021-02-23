@@ -79,6 +79,8 @@ final class UsersFeedController: UIViewController {
             case .loadedWithError(let error):
                 self?.hideLoaderIfNeeded()
                 self?.handleError(error)
+                guard let itemsToShow = self?.viewModel.numberOfItems(), itemsToShow <= 0 else { return }
+                self?.performStubbing(withAction: true)
             }
         }.add(to: &disposal)
     }
