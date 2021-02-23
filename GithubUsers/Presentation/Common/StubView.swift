@@ -51,11 +51,16 @@ final class StubView: UIView {
     
     // MARK: - Private properties
     
-    private let completion: Completion
+    private var completion: Completion? {
+        didSet {
+            guard completion != nil else { return }
+            configureButtonLayout()
+        }
+    }
     
     // MARK: - Initialization
     
-    init(completion: @escaping Completion) {
+    init(completion: Completion? = nil) {
         self.completion = completion
         super.init(frame: .zero)
         configureLayout()
@@ -69,11 +74,11 @@ final class StubView: UIView {
     
     @objc
     private func buttonPressed() {
-        completion()
+        completion?()
     }
     
     private func configureLayout() {
-        [imageView, label, retryButton].forEach {
+        [imageView, label].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             addSubview($0)
         }
@@ -88,7 +93,15 @@ final class StubView: UIView {
             label.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor),
             label.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor),
             label.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
+            label.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor)
+        ])
+    }
+    
+    private func configureButtonLayout() {
+        retryButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(retryButton)
+        
+        NSLayoutConstraint.activate([
             retryButton.topAnchor.constraint(equalTo: label.bottomAnchor, constant: Constants.retryButtonTopInset),
             retryButton.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor),
             retryButton.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor),
@@ -96,7 +109,6 @@ final class StubView: UIView {
             retryButton.bottomAnchor.constraint(equalTo: bottomAnchor),
             retryButton.widthAnchor.constraint(equalToConstant: Constants.buttonWidth)
         ])
-        
     }
     
 }

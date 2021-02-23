@@ -64,13 +64,16 @@ final class UsersFeedController: UIViewController {
             case .loading:
                 self?.showLoader()
             case .loaded(let itemsCount):
-                defer { self?.hideLoaderIfNeeded() }
+                guard let self = self else { return }
+                defer {
+                    self.hideLoaderIfNeeded()
+                    self.collectionView.reloadData()
+                }
                 guard  itemsCount > 0 else {
-                    self?.performStubbing()
+                    self.performStubbing(withAction: !self.viewModel.isFiltering)
                     return
                 }
-                self?.removeStubbingIfNeeded()
-                self?.collectionView.reloadData()
+                self.removeStubbingIfNeeded()
             case .loadedWithError(let error):
                 self?.hideLoaderIfNeeded()
                 self?.handleError(error)
@@ -86,9 +89,7 @@ final class UsersFeedController: UIViewController {
             title: "Error",
             subtitle: error.localizedDescription,
             buttonTitle: "Try again",
-            mainAction: retryAction,
-            closeAction: retryAction
-        )
+            mainAction: retryAction)
     }
     
     private func collectionConfigure() {
@@ -125,11 +126,11 @@ final class UsersFeedController: UIViewController {
         loaderViewController = nil
     }
     
-    private func performStubbing() {
+    private func performStubbing(withAction: Bool) {
         removeStubbingIfNeeded()
-        let stubView = StubView() { [weak self] in
-            self?.viewModel.load()
-        }
+        let reloadAction: () -> Void = { [weak self] in self?.viewModel.load() }
+        let action = withAction ? reloadAction : nil
+        let stubView = StubView(completion: action)
 
         stubView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.addSubview(stubView)
