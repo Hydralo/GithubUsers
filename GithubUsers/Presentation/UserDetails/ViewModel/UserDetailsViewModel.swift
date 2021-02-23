@@ -11,6 +11,7 @@ final class UserDetailsViewModel: IUserDetailsViewModel {
     
     // MARK: - Properties
     
+    let state: Observable<State?> = Observable(nil)
     let userName: String
     let userInfo: Observable<(textInfo: UserTextInfo, quantitativeInfo: UserQuantitativeInfo)?> = Observable(nil)
     let avatarImage: Observable<UIImage?> = Observable(nil)
@@ -31,6 +32,7 @@ final class UserDetailsViewModel: IUserDetailsViewModel {
     // MARK: - Functions
     
     func load() {
+        state.value = .loading
         service.requestUserDetails(userName: userName) { [weak self] result in
             do {
                 let detailedUser = try result.get()
@@ -42,8 +44,9 @@ final class UserDetailsViewModel: IUserDetailsViewModel {
                 )
                 self?.userInfo.value = (textInfo: userTextInfo, quantitativeInfo: userQuantitativeInfo)
                 self?.loadAvatarImage(imageURL: detailedUser.avatarURL)
+                self?.state.value = .loaded
             } catch {
-                print(error)
+                self?.state.value = .loadedWithError(error)
             }
         }
     }

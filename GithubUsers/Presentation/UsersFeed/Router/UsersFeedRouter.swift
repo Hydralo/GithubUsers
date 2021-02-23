@@ -30,7 +30,7 @@ final class UsersFeedRouter: IUsersFeedRouter {
     func routeToUserDetails(_ userName: String) {
         let service = UserDetailsService(networkClient: networkClient, configurator: UserDetailsServiceConfigurator())
         let viewModel = UserDetailsViewModel(userName: userName, service: service, imageService: imageService)
-        let detailsController = UserDetailsController(viewModel: viewModel)
+        let detailsController = UserDetailsController(viewModel: viewModel, router: self)
         navigationController?.pushViewController(detailsController, animated: true)
     }
     
@@ -51,6 +51,10 @@ final class UsersFeedRouter: IUsersFeedRouter {
         errorController.modalPresentationStyle = .fullScreen
         errorController.modalTransitionStyle = .crossDissolve
         navigationController?.topViewController?.present(errorController, animated: true)
+    }
+    
+    func routeToRoot() {
+        navigationController?.popToRootViewController(animated: false)
     }
     
 }

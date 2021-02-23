@@ -139,14 +139,14 @@ final class ErrorController: UIViewController {
     
     @objc
     private func buttonPressed() {
-        mainAction()
         dismiss(animated: false)
+        mainAction()
     }
     
     @objc
     private func closeButtonPressed() {
-        closeAction?()
         dismiss(animated: false)
+        closeAction?()
     }
     
 }

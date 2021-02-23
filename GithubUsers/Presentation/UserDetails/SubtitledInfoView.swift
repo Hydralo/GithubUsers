@@ -12,19 +12,19 @@ final class SubtitledInfoView: UIView {
     // MARK: - Constants
     
     private enum Constants {
-        static let fontSize: CGFloat = 16
+        static let fontSize =  (value: CGFloat(16), subtitle: CGFloat(14))
     }
     
     // MARK: - Views
     
     private let valueLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: Constants.fontSize, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: Constants.fontSize.value, weight: .bold)
         return label
     }()
     private let subtitleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: Constants.fontSize, weight: .light)
+        label.font = UIFont.systemFont(ofSize: Constants.fontSize.subtitle, weight: .light)
         return label
     }()
     

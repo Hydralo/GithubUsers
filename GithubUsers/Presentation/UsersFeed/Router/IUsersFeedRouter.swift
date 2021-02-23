@@ -12,6 +12,7 @@ protocol IUsersFeedRouter: AnyObject {
     
     func getConfiguredRootViewController() -> UIViewController
     func routeToUserDetails(_ userName: String)
+    func routeToRoot()
     func routeToError(
         title: String,
         subtitle: String,

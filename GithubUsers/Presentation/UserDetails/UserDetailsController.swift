@@ -24,6 +24,7 @@ final class UserDetailsController: UIViewController {
     
     // MARK: - Views
     
+    private var loaderViewController: LoaderViewController?
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -61,11 +62,13 @@ final class UserDetailsController: UIViewController {
     
     private let viewModel: IUserDetailsViewModel
     private var disposal = Disposal()
+    private weak var router: IUsersFeedRouter?
     
     // MARK: - Initialization
     
-    init(viewModel: IUserDetailsViewModel) {
+    init(viewModel: IUserDetailsViewModel, router: IUsersFeedRouter) {
         self.viewModel = viewModel
+        self.router = router
         super.init(nibName: nil, bundle: nil)
         configureLayout()
         configureVerticalStack()
@@ -87,6 +90,19 @@ final class UserDetailsController: UIViewController {
     // MARK: - Private functions
 
     private func bindViewModel() {
+        viewModel.state.observe { [weak self] state in
+            guard let state = state else { return }
+            switch state {
+            case .loading:
+                self?.showLoader()
+            case .loaded:
+                self?.hideLoaderIfNeeded()
+            case .loadedWithError(let error):
+                self?.hideLoaderIfNeeded()
+                self?.handleError(error)
+            }
+        }.add(to: &disposal)
+        
         viewModel.userInfo.observe { [weak self] userInfo in
             guard let userInfo = userInfo else { return }
             self?.nameLabel.text = userInfo.textInfo.name
@@ -102,6 +118,22 @@ final class UserDetailsController: UIViewController {
         viewModel.avatarImage.observe { [weak self] image in
             self?.imageView.image = image ?? Constants.avatarPlaceholder
         }.add(to: &disposal)
+    }
+    
+    private func handleError(_ error: Error) {
+        let retryAction: () -> Void = { [weak self] in
+            self?.viewModel.load()
+        }
+        let closeAction: () -> Void = { [weak self] in
+            self?.router?.routeToRoot()
+        }
+        router?.routeToError(
+            title: "Error",
+            subtitle: error.localizedDescription,
+            buttonTitle: "Try again",
+            mainAction: retryAction,
+            closeAction: closeAction
+        )
     }
     
     private func configureLayout() {
@@ -178,7 +210,18 @@ final class UserDetailsController: UIViewController {
             SubtitledInfoView(value: String(followers), subtitle: Constants.subtitle.followers),
             SubtitledInfoView(value: String(following), subtitle: Constants.subtitle.following)
         ]
-        
+    }
+    
+    private func showLoader() {
+        let loaderController = LoaderViewController()
+        loaderViewController = loaderController
+        embed(loaderController, animated: false)
+    }
+
+    private func hideLoaderIfNeeded() {
+        guard loaderViewController != nil else { return }
+        loaderViewController?.unembed()
+        loaderViewController = nil
     }
 
 }
