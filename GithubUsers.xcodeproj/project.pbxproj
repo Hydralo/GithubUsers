@@ -228,7 +228,6 @@
 				7867099C25E2A75400FCEEA1 /* ViewModel */,
 				7867099525E2A60700FCEEA1 /* Router */,
 				7867099125E2A5E700FCEEA1 /* UsersFeedController.swift */,
-				78D06A5825E550CE0003D4F4 /* StubView.swift */,
 			);
 			path = UsersFeed;
 			sourceTree = "<group>";
@@ -439,10 +438,9 @@
 		78A1597F25E29CB500908901 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				784BCE7C25E43E8F003F2749 /* Error */,
-				784BCE5225E40FE7003F2749 /* UserDetails */,
+				78D06A5B25E55BCE0003D4F4 /* Common */,
 				786709E425E2BAC000FCEEA1 /* Extensions */,
-				7856BDA225E31ABA00301D4E /* Loader */,
+				784BCE5225E40FE7003F2749 /* UserDetails */,
 				7867099025E2A5D800FCEEA1 /* UsersFeed */,
 			);
 			path = Presentation;
@@ -452,6 +450,7 @@
 			isa = PBXGroup;
 			children = (
 				78670A0625E2C51C00FCEEA1 /* Extesions */,
+				78D06A5D25E55E580003D4F4 /* Helpers */,
 				78670A0025E2BE0000FCEEA1 /* Common */,
 				786709D025E2B20400FCEEA1 /* Configurators */,
 				78A1598325E2A26200908901 /* Managers */,
@@ -487,6 +486,23 @@
 				78A1598A25E2A2BF00908901 /* LaunchAppManager.swift */,
 			);
 			path = LaunchApp;
+			sourceTree = "<group>";
+		};
+		78D06A5B25E55BCE0003D4F4 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				784BCE7C25E43E8F003F2749 /* Error */,
+				7856BDA225E31ABA00301D4E /* Loader */,
+				78D06A5825E550CE0003D4F4 /* StubView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		78D06A5D25E55E580003D4F4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
