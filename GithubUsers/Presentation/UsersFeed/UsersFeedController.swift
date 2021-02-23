@@ -13,6 +13,7 @@ final class UsersFeedController: UIViewController {
         static let cellHeight: CGFloat = 120
         static let searchBarPlaceholder = "User login"
         static let navigationTitle = "Users"
+        static let error = (title: "Error", actionTitle: "Try again")
     }
     
     // MARK: - Views
@@ -67,13 +68,14 @@ final class UsersFeedController: UIViewController {
                 guard let self = self else { return }
                 defer {
                     self.hideLoaderIfNeeded()
-                    self.collectionView.reloadData()
                 }
                 guard  itemsCount > 0 else {
+                    self.collectionView.reloadData()
                     self.performStubbing(withAction: !self.viewModel.isFiltering)
                     return
                 }
                 self.removeStubbingIfNeeded()
+                self.collectionView.reloadData()
             case .loadedWithError(let error):
                 self?.hideLoaderIfNeeded()
                 self?.handleError(error)
@@ -86,9 +88,9 @@ final class UsersFeedController: UIViewController {
             self?.viewModel.load()
         }
         router.routeToError(
-            title: "Error",
+            title: Constants.error.title,
             subtitle: error.localizedDescription,
-            buttonTitle: "Try again",
+            buttonTitle: Constants.error.actionTitle,
             mainAction: retryAction)
     }
     
